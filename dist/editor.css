@@ -1,0 +1,16 @@
+.viewport {
+  height: 200px;
+  width: 300px;
+  border: 1px solid black;
+  overflow: scroll;
+}
+
+.roll {
+  width: 100vw;
+  background-image: linear-gradient(to bottom right, blue,yellow, red);
+}
+
+.noteLine {
+  height: 10px;
+  border-bottom: 1px solid black;
+}
