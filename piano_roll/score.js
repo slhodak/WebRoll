@@ -21,7 +21,7 @@ Score.prototype.insertEvent = function (time, event) {
         curr.events.push(event);
         searching = false;
       } else if (curr.next) {
-        if (curr.next.time > curr.time) {
+        if (curr.next.time > time) {
           let savedNext = curr.next;
           curr.next = new TriggerNode(time, event);
           curr.next.next = savedNext;
@@ -37,6 +37,28 @@ Score.prototype.insertEvent = function (time, event) {
   }
 };
 
+Score.prototype.removeEvent = function (time, event) {
+  //  travel to event time
+  let curr = this.triggers.head;
+  let last;
+  while(curr.time !== time) {
+    last = curr;
+    curr = curr.next;
+  }
+
+  //  remove event
+  curr.events.forEach((nodeEvent, index) => {
+    if (nodeEvent[0] == event[0] && nodeEvent[1] === event[1]) {
+      curr.events.splice(index, 1);
+    }
+  });
+
+  //  if the events array is empty, remove node
+  if (curr.events.length < 1) {
+    last.next = curr.next;
+  }
+};
+
 const TriggerNode = function (time, event) {
   this.time = time;
   this.events = [];
@@ -45,3 +67,26 @@ const TriggerNode = function (time, event) {
   }
   this.next = null;
 };
+
+
+let score = new Score();
+
+score.insertEvent(15, [128, 2, 3]);
+score.insertEvent(20, [144, 2, 3]);
+score.insertEvent(16, [128, 5, 15]);
+score.insertEvent(24, [144, 5, 14]);
+score.insertEvent(16, [128, 15, 15]);
+score.insertEvent(22, [144, 15, 12]);
+
+score.removeEvent(16, [127, 5, 15]);
+
+let node = score.triggers.head;
+while (node) {
+  console.log(node);
+  node = node.next;
+}
+
+export {
+  Score,
+  TriggerNode
+}
