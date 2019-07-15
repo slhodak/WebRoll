@@ -4,7 +4,8 @@
   "description": "piano roll microservice for editing note sequence data",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon server/index.js",
+    "dev-tests": "nodemon tests/server/index.js",
+    "dev-start": "nodemon server/index.js",
     "start": "node server/index.js"
   },
   "repository": {
