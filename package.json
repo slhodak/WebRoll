@@ -4,7 +4,8 @@
   "description": "piano roll microservice for editing note sequence data",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon server/index.js"
+    "test": "nodemon server/index.js",
+    "start": "node server/index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/slhodak/piano_roll#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1"
   }
 }

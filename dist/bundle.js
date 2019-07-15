@@ -1,4 +1,4 @@
-const host = 'http://localhost:3000';
+const host = 'http://localhost:3001';
 
 const scripts = [
   '/piano_roll/index.js',
