@@ -1,9 +1,8 @@
-const host = 'http://localhost:3001';
+const host = 'http://localhost:4001';
 
 const scripts = [
-  '/piano_roll/index.js',
-  '/piano_roll/editor.js',
-  '/piano_roll/score.js'
+  '/testScore.js',
+  '../piano_roll/score.js'
 ];
 
 let reference = document.getElementsByClassName('scripts')[0];
