@@ -1,7 +1,5 @@
 import { Score, TriggerNode } from '../piano_roll/score.js'; 
 
-//  Add a testing framework
-
 let score = new Score();
 
 score.insertEvent(15, [128, 2, 3]);
@@ -13,8 +11,14 @@ score.insertEvent(22, [144, 15, 12]);
 
 score.removeEvent(16, [127, 5, 15]);
 
-let node = score.triggers.head;
-while (node) {
-  console.log(node);
-  node = node.next;
-}
+test('checks time value of final node to be 24', () => {
+  let node = score.triggers.head;
+  let last;
+  while(node) {
+    if (!node.next) {
+      last = node;
+    }
+    node = node.next;
+  }
+  expect(last.time).toBe(24);
+});

@@ -3,8 +3,15 @@
   "version": "1.0.0",
   "description": "piano roll microservice for editing note sequence data",
   "main": "index.js",
+  "babel": {
+    "env": {
+      "test": {
+        "plugins": ["transform-es2015-modules-commonjs"]
+      }
+    }
+  },
   "scripts": {
-    "dev-tests": "nodemon tests/server/index.js",
+    "test": "jest",
     "dev-start": "nodemon server/index.js",
     "start": "node server/index.js"
   },
@@ -25,7 +32,15 @@
   },
   "homepage": "https://github.com/slhodak/piano_roll#readme",
   "dependencies": {
+    "@babel/core": "^7.5.4",
+    "babel-jest": "^24.8.0",
+    "babel-preset-env": "^1.7.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "jest": "^24.8.0",
+    "save-dev": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2"
   }
 }

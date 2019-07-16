@@ -1,0 +1,10 @@
+
+
+Branches:
+  begin-jesting: Add Jest, and write 3 tests for your model.
+
+
+
+
+begin-jesting
+  - Don't render tests in the browser. Just run in the console. It's Jest.
