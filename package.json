@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "piano roll microservice for editing note sequence data",
   "main": "index.js",
+  "jest": {
+    "verbose": true
+  },
   "babel": {
     "env": {
       "test": {

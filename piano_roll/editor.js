@@ -20,9 +20,9 @@ const Editor = function(length, timeDivision, timeSignature) {
   
   };
   this.numberOfDivisions = function(length, timeDivision) {
-    return ((64 * timeDivision[0]) / timeDivision[1]) * length;
+    return (timeDivision[1] * length) / timeDivision[0];
   };
-  
+
   //  Insert into Grid Container
   
 }
