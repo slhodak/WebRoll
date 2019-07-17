@@ -13,7 +13,7 @@ const Editor = function(length = 16, timeDivision = [1, 8], timeSignature = [4, 
   //    Grid edits alter model
   //    TODO: Generate based on grid division, t/s, and length (in bars for now)
   this.divisions = this.numberOfDivisions(length, timeDivision);
-  this.createGrid(length, timeDivision, timeSignature);
+  this.grid = this.createGrid(length, timeDivision, timeSignature);
   //  Insert into Grid Container
 };
 
