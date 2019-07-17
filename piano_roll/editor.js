@@ -30,7 +30,6 @@ Editor.prototype.createGrid = function(divisions) {
     column += '</div>';
     columns += column;
   }
-  console.log(columns);
   return `<div class="editorGrid">${columns}</div>`;
 };
 
