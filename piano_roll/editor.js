@@ -1,4 +1,5 @@
 //  Editor for sequencer -- View & Controller
+import { noteUtils } from './lib/helpers.js';
 
 //  Editor = entire module
 //    - Interface to alter Grid Division and Time Signature
@@ -24,8 +25,8 @@ Editor.prototype.createGrid = function(divisions) {
   let columns = '';
   for (let i = 0; i < divisions; i++) {
     let column = `<div class="timeColumn" data-column-time=${i}>`;
-    for (let j = 1; j < 89; j++) {
-      column += `<div class="noteCell" data-note=${i}></div>`;
+    for (let j = 87; j > -1; j--) {
+      column += `<div class="noteCell ${noteUtils.getNoteByNumber(j)[0]}" data-note=${j}></div>`;
     }
     column += '</div>';
     columns += column;

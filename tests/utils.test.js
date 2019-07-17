@@ -1,4 +1,4 @@
-import { noteUtils } from '../utilities/helpers.js';
+import { noteUtils } from '../piano_roll/lib/helpers.js';
 
 describe('Utilities Tests', () => {
   it('should calculate the correct note name by its number', () => {

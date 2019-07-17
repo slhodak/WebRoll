@@ -1,6 +1,7 @@
 const host = 'http://localhost:3001';
 
 const scripts = [
+  '/piano_roll/lib/helpers.js',
   '/piano_roll/index.js',
   '/piano_roll/editor.js',
   '/piano_roll/score.js'
