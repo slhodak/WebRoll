@@ -49,6 +49,7 @@ describe('Clock', () => {
   const clock = new Clock(120);
   
   beforeEach(() => {
+    clock.ticks = 0;
     jest.useFakeTimers();
   });
   
@@ -61,17 +62,24 @@ describe('Clock', () => {
     jest.advanceTimersByTime(clock.interval * 3.5);
     clock.stop();
     expect(clock.ticks).toBe(3);
-  })
+  });
 
   it('should tick according to a given tempo', () => {
-    clock.begin();
+    let slowClock = new Clock(4, [4, 4]);
+    slowClock.begin();
     jest.advanceTimersByTime(60000);
-    clock.stop();
-    expect(clock.ticks).toBe(120 * 64);
+    slowClock.stop();
+    expect(slowClock.ticks).toBe(64);
+    let fastClock = new Clock(120, [4, 4]);
+    fastClock.begin();
+    jest.advanceTimersByTime(60000);
+    fastClock.stop();
+    expect(fastClock.ticks).toBeGreaterThan(1920);
+    expect(fastClock.ticks).toBeLessThan(2000);
   });
 
   it.skip('should loop through a maximum of ticks', () => {
-
+    
   });
 });
 

@@ -1,6 +1,6 @@
-const Clock = function(tempo) {
+const Clock = function(tempo = 120, timeSignature = [4, 4]) {
   this.tempo = tempo;
-  this.interval = (tempo / 60) / 64 * 1000;
+  this.interval = 60000 / (tempo * (64 / timeSignature[0]));
   this.ticking = false;
   this.ticks = 0;
 };
@@ -9,6 +9,7 @@ Clock.prototype.begin = function() {
   this.ticking = true;
   setTimeout( () => {
     if (this.ticking) {
+      debugger;
       this.tick();
       this.begin();
     }
