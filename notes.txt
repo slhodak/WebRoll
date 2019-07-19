@@ -1,10 +1,15 @@
-
-
 Branches:
+  Clock-and-queue: make the clock send messages from a score event queue at correct times
   begin-jesting: Add Jest, and write 3 tests for your model.
 
-
+Clock-and-queue
+  - need a score instance. Just for testing? But where would it really be?
+  - Give a clock to a Score or give a score to a Clock?
+    - Or give both to something higher
+      - Allows multiple scores
+      - Cleaner, logical organization
 
 
 begin-jesting
   - Don't render tests in the browser. Just run in the console. It's Jest.
+

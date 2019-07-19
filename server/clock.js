@@ -22,12 +22,11 @@ Clock.prototype.tick = function() {
   } else {
     this.ticks += 1;
   }
+
 };
 
 Clock.prototype.stop = function() {
   this.ticking = false;
 };
 
-module.exports = {
-  Clock
-};
+module.exports = Clock;

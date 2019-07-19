@@ -1,5 +1,5 @@
 const { Score, TriggerNode } = require('../server/score.js'); 
-const { Clock } = require('../server/clock.js');
+const Clock = require('../server/clock.js');
 
 describe('Score Functions', () => {
 
@@ -86,12 +86,12 @@ describe('Clock', () => {
     expect(swingClock.ticks).toBe(32);
   });
 
-  it('should calculate the maximum ticks according to length and time signature', () => {
+  it('should calculate size of tick loop according to length and time signature', () => {
     let limitedClock = new Clock(100, [3, 4], 4);
     expect(limitedClock.tickLimit).toBe(192);
-  })
+  });
 
-  it('should loop through a maximum of ticks according to length', () => {
+  it('should loop through tick loop', () => {
     let limitedClock = new Clock(60, [4, 4], 4);
     limitedClock.begin();
     jest.advanceTimersByTime(17000);
@@ -99,10 +99,14 @@ describe('Clock', () => {
     expect(limitedClock.ticks).toBeGreaterThan(16);
     expect(limitedClock.ticks).toBeLessThan(20);
   });
-});
+  
+  describe('Tick Method', () => {
+    test.skip('should query Score event queue on each tick', () => {
+      
+    });
 
-describe('Score message events', () => {
-  test.skip('should send note events in sequence in time with the Clock', () => {
-
+    test.skip('should send note messages from Score event queue in order', () => {
+      
+    });
   });
 });

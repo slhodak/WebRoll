@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const wss = require('./websocket');
+const Player = require('./player');
 
 //  Express Server - Static Files & Bundles
 
@@ -24,23 +25,6 @@ wss.on('listening', () => {
 
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
   });
-
-  //  Test tone
-  ws.send(JSON.stringify([128, 54, 78]));
-  function makeTryer() {
-    let tries = 3;
-    return () => {
-      if (tries > 0) {
-        setTimeout(() => {
-          ws.send(JSON.stringify([144, 54, 78]));
-          tries -= 1;
-          tryer();
-        }, 2000);
-      }
-    }
-  }
-  const tryer = makeTryer();
-  tryer();
+  const player = new Player()
 });
