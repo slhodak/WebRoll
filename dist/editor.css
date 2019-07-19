@@ -1,16 +1,26 @@
-.viewport {
+.gridContainer {
   height: 200px;
-  width: 300px;
+  width: 500px;
   border: 1px solid black;
   overflow: scroll;
 }
 
-.roll {
-  width: 100vw;
-  background-image: linear-gradient(to bottom right, blue,yellow, red);
+.editorGrid {
+  display: flex;
 }
 
-.noteLine {
-  height: 10px;
-  border-bottom: 1px solid black;
+.timeColumn {
+  border: 1px solid black;
 }
+
+.noteCell {
+  /* padding: 1px; */
+  height: 10px;
+  width: 20px;
+  border: 1px solid gray;
+}
+
+.As, .Cs, .Ds, .Fs, .Gs {
+  background-color: rgb(65, 69, 129);
+}
+
