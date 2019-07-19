@@ -1,5 +1,3 @@
-//  Server needed to write and read data from files
-
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
@@ -14,6 +12,9 @@ app.use(cors());
 app.use(express.static(path.resolve(__dirname, '../dist')));
 app.use('/piano_roll', express.static(path.resolve(__dirname, '../piano_roll')));
 
+app.listen(Network.httpPort, () => {
+  console.log(`Piano roll service available on port ${Network.httpPort}`);
+});
 
 //  WebSocket Server - Note Event Queue Transmissions
 
@@ -22,15 +23,24 @@ wss.on('listening', () => {
 });
 
 wss.on('connection', function connection(ws) {
-  console.log('ws connected');
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
   });
- 
-  ws.send('something');
-});
 
-
-app.listen(Network.httpPort, () => {
-  console.log(`Piano roll service available on port ${Network.httpPort}`);
+  //  Test tone
+  ws.send(JSON.stringify([128, 54, 78]));
+  function makeTryer() {
+    let tries = 3;
+    return () => {
+      if (tries > 0) {
+        setTimeout(() => {
+          ws.send(JSON.stringify([144, 54, 78]));
+          tries -= 1;
+          tryer();
+        }, 2000);
+      }
+    }
+  }
+  const tryer = makeTryer();
+  tryer();
 });

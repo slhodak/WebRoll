@@ -44,3 +44,19 @@ describe('Score Functions', () => {
     expect(last.time).toBe(24);
   });
 });
+
+describe('Clock', () => {
+  it('should count ticks according to a given tempo', () => {
+    
+  });
+
+  it('should count ticks according to a given tempo', () => {
+
+  });
+});
+
+describe('Score message events', () => {
+  test('should send note events in sequence in time with the Clock', () => {
+
+  });
+});
