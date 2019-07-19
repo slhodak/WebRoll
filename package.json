@@ -15,7 +15,8 @@
   },
   "scripts": {
     "test": "jest",
-    "dev-start": "nodemon server/index.js",
+    "dev-tcp": "nodemon server/tcp.js",
+    "dev-http": "nodemon server/index.js",
     "start": "node server/index.js"
   },
   "repository": {
