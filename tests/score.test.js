@@ -46,7 +46,7 @@ describe('Score Functions', () => {
 });
 
 describe('Clock', () => {
-  const clock = new Clock(120);
+  const clock = new Clock(null, 120);
   
   beforeEach(() => {
     clock.ticks = 0;
@@ -58,20 +58,20 @@ describe('Clock', () => {
   });
 
   it('should begin and stop ticking on command', () => {
-    clock.begin();
+    clock.start();
     jest.advanceTimersByTime(clock.interval * 3.5);
     clock.stop();
     expect(clock.ticks).toBe(3);
   });
 
   it('should tick according to a given tempo', () => {
-    let slowClock = new Clock(4, [4, 4]);
-    slowClock.begin();
+    let slowClock = new Clock(null, 4, [4, 4]);
+    slowClock.start();
     jest.advanceTimersByTime(60000);
     slowClock.stop();
     expect(slowClock.ticks).toBe(64);
-    let fastClock = new Clock(120, [4, 4]);
-    fastClock.begin();
+    let fastClock = new Clock(null, 120, [4, 4]);
+    fastClock.start();
     jest.advanceTimersByTime(60000);
     fastClock.stop();
     expect(fastClock.ticks).toBeGreaterThan(1900);
@@ -79,34 +79,34 @@ describe('Clock', () => {
   });
 
   it('should tick according to a given time signature', () => {
-    let swingClock = new Clock(40, [6, 8]);
-    swingClock.begin();
+    let swingClock = new Clock(null, 40, [6, 8]);
+    swingClock.start();
     jest.advanceTimersByTime(6000);
     swingClock.stop();
     expect(swingClock.ticks).toBe(32);
   });
 
   it('should calculate size of tick loop according to length and time signature', () => {
-    let limitedClock = new Clock(100, [3, 4], 4);
+    let limitedClock = new Clock(null, 100, [3, 4], 4);
     expect(limitedClock.tickLimit).toBe(192);
   });
 
   it('should loop through tick loop', () => {
-    let limitedClock = new Clock(60, [4, 4], 4);
-    limitedClock.begin();
+    let limitedClock = new Clock(null, 60, [4, 4], 4);
+    limitedClock.start();
     jest.advanceTimersByTime(17000);
     limitedClock.stop();
     expect(limitedClock.ticks).toBeGreaterThan(16);
     expect(limitedClock.ticks).toBeLessThan(20);
   });
-  
-  describe('Tick Method', () => {
-    test.skip('should query Score event queue on each tick', () => {
-      
-    });
+});
 
-    test.skip('should send note messages from Score event queue in order', () => {
-      
-    });
+describe('Player', () => {
+  test.skip('should query Score event queues on each tick', () => {
+    
+  });
+
+  test.skip('should send note messages from Score event queues in order', () => {
+    
   });
 });
