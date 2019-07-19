@@ -1,5 +1,5 @@
-import { Score, TriggerNode } from '../server/score.js/index.js'; 
-
+const { Score, TriggerNode } = require('../server/score.js'); 
+const { Clock } = require('../server/clock.js');
 
 describe('Score Functions', () => {
 
@@ -46,17 +46,37 @@ describe('Score Functions', () => {
 });
 
 describe('Clock', () => {
-  it('should count ticks according to a given tempo', () => {
-
+  const clock = new Clock(120);
+  
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+  
+  it('should have an interval property equal to milliseconds between ticks', () => {
+    expect(clock.interval).toBe(31.25);
   });
 
-  it('should count ticks according to a given tempo', () => {
+  it('should begin and stop ticking on command', () => {
+    clock.begin();
+    jest.advanceTimersByTime(clock.interval * 3.5);
+    clock.stop();
+    expect(clock.ticks).toBe(3);
+  })
+
+  it('should tick according to a given tempo', () => {
+    clock.begin();
+    jest.advanceTimersByTime(60000);
+    clock.stop();
+    expect(clock.ticks).toBe(120 * 64);
+  });
+
+  it.skip('should loop through a maximum of ticks', () => {
 
   });
 });
 
 describe('Score message events', () => {
-  test('should send note events in sequence in time with the Clock', () => {
+  test.skip('should send note events in sequence in time with the Clock', () => {
 
   });
 });
