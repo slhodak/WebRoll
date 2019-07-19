@@ -19,7 +19,7 @@ app.listen(Network.httpPort, () => {
 //  WebSocket Server - Note Event Queue Transmissions
 
 wss.on('listening', () => {
-  console.log('WebSocket Server listening on port 4001');
+  console.log(`WebSocket Server listening on port ${Network.wsPort}`);
 });
 
 wss.on('connection', function connection(ws) {
