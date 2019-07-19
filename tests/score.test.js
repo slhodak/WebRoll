@@ -92,11 +92,12 @@ describe('Clock', () => {
   })
 
   it('should loop through a maximum of ticks according to length', () => {
-    let limitedClock = new Clock(100, [4, 4], 4);
+    let limitedClock = new Clock(60, [4, 4], 4);
     limitedClock.begin();
-    jest.advanceTimersByTime(5000); // 5 beats
+    jest.advanceTimersByTime(17000);
     limitedClock.stop();
-    expect(limitedClock.ticks).toBe(64);
+    expect(limitedClock.ticks).toBeGreaterThan(16);
+    expect(limitedClock.ticks).toBeLessThan(20);
   });
 });
 
