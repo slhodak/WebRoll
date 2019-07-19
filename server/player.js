@@ -2,10 +2,14 @@ const Clock = require('./clock');
 const { Score, TriggerNode } = require('./score');
 
 
-const Player = function(socket) {
+const Player = function(socket, scores = []) {
   this.socket = socket;
   this.clock = new Clock(this);
-  this.scores = [];
+  this.scores = scores;
+};
+
+Player.prototype.addScore = function(score) {
+  this.scores.push(score);
 };
 
 Player.prototype.start = function() {
@@ -14,7 +18,8 @@ Player.prototype.start = function() {
 
 Player.prototype.checkQueues = function() {
   //  player checks scores' events when clock ticks
-  //  if any events are due to be played, send them to the Synthesizer via the WebSocket
+  //  send due events to synth via socket
+
 };
 
 Player.prototype.stop = function() {
