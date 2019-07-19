@@ -78,8 +78,16 @@ describe('Clock', () => {
     expect(fastClock.ticks).toBeLessThan(2000);
   });
 
+  it('should tick according to a given time signature', () => {
+    let swingClock = new Clock(40, [6, 8]);
+    swingClock.begin();
+    jest.advanceTimersByTime(6000);
+    swingClock.stop();
+    expect(swingClock.ticks).toBe(32);
+  })
+
   it.skip('should loop through a maximum of ticks', () => {
-    
+
   });
 });
 
