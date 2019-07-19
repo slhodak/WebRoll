@@ -1,4 +1,4 @@
-import { Score, TriggerNode } from '../piano_roll/score.js'; 
+import { Score, TriggerNode } from '../server/score.js/index.js'; 
 
 
 describe('Score Functions', () => {
@@ -47,7 +47,7 @@ describe('Score Functions', () => {
 
 describe('Clock', () => {
   it('should count ticks according to a given tempo', () => {
-    
+
   });
 
   it('should count ticks according to a given tempo', () => {
