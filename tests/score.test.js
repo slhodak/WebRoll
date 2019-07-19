@@ -74,7 +74,7 @@ describe('Clock', () => {
     fastClock.begin();
     jest.advanceTimersByTime(60000);
     fastClock.stop();
-    expect(fastClock.ticks).toBeGreaterThan(1920);
+    expect(fastClock.ticks).toBeGreaterThan(1900);
     expect(fastClock.ticks).toBeLessThan(2000);
   });
 
@@ -84,10 +84,19 @@ describe('Clock', () => {
     jest.advanceTimersByTime(6000);
     swingClock.stop();
     expect(swingClock.ticks).toBe(32);
+  });
+
+  it('should calculate the maximum ticks according to length and time signature', () => {
+    let limitedClock = new Clock(100, [3, 4], 4);
+    expect(limitedClock.tickLimit).toBe(192);
   })
 
-  it.skip('should loop through a maximum of ticks', () => {
-
+  it('should loop through a maximum of ticks according to length', () => {
+    let limitedClock = new Clock(100, [4, 4], 4);
+    limitedClock.begin();
+    jest.advanceTimersByTime(5000); // 5 beats
+    limitedClock.stop();
+    expect(limitedClock.ticks).toBe(64);
   });
 });
 
