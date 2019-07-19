@@ -5,6 +5,7 @@ const Score = function (tempo = 100) {
   this.triggers = {
     head: null
   };
+  this.current = this.triggers.head;
 };
 
 Score.prototype.insertEvent = function (time, event) {
