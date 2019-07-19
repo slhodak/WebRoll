@@ -17,10 +17,7 @@ Player.prototype.start = function() {
 };
 
 Player.prototype.checkQueues = function(time) {
-  //  player checks scores' events when clock ticks
-  //  send due events to synth via socket
   this.scores.forEach(score => {
-    //  returns a trigger event (and increments score current) if score current is due
     let current = score.read(time);
     if (current) {
       current.events.forEach(event => {
@@ -33,6 +30,5 @@ Player.prototype.checkQueues = function(time) {
 Player.prototype.stop = function() {
   this.clock.stop();
 };
-
 
 module.exports = Player;
