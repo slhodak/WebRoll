@@ -16,14 +16,16 @@ Player.prototype.start = function() {
   this.clock.begin();
 };
 
-Player.prototype.checkQueues = function(tick) {
+Player.prototype.checkQueues = function(time) {
   //  player checks scores' events when clock ticks
   //  send due events to synth via socket
   this.scores.forEach(score => {
     //  returns a trigger event (and increments score current) if score current is due
-    let current = score.read(tick);
+    let current = score.read(time);
     if (current) {
-      this.socket.send(current.event);
+      current.events.forEach(event => {
+        this.socket.send(event);
+      });
     }
   });
 };

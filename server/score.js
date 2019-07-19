@@ -8,6 +8,18 @@ const Score = function (tempo = 100) {
   this.current = this.triggers.head;
 };
 
+Score.prototype.read = function(time) {
+  if (this.current.time === time) {
+    if (this.current.next) {
+      this.current = this.current.next;
+    } else {
+      this.current = this.triggers.head;
+    }
+    return this.current;
+  }
+  return -1;
+}
+
 Score.prototype.insertEvent = function (time, event) {
   let curr = this.triggers.head;
   if (!curr) {
