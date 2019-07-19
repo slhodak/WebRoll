@@ -26,5 +26,5 @@ wss.on('listening', () => {
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
   });
-  const player = new Player()
+  const player = new Player(ws);
 });

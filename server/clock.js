@@ -1,4 +1,5 @@
-const Clock = function(tempo = 120, timeSignature = [4, 4], length = 64) {
+const Clock = function(player, tempo = 120, timeSignature = [4, 4], length = 64) {
+  this.player = player;
   this.tempo = tempo;
   this.interval = 60000 / (tempo * (64 / timeSignature[1]));
   this.ticking = false;
@@ -6,12 +7,12 @@ const Clock = function(tempo = 120, timeSignature = [4, 4], length = 64) {
   this.tickLimit = length * (64 * (timeSignature[0] / timeSignature[1]));
 };
 
-Clock.prototype.begin = function() {
+Clock.prototype.start = function() {
   this.ticking = true;
   setTimeout( () => {
     if (this.ticking) {
       this.tick();
-      this.begin();
+      this.start();
     }
   }, this.interval);
 };
@@ -22,7 +23,9 @@ Clock.prototype.tick = function() {
   } else {
     this.ticks += 1;
   }
-
+  if (this.player) {
+    this.player.checkQueues(this.ticks);
+  }
 };
 
 Clock.prototype.stop = function() {
