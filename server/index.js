@@ -3,6 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const wss = require('./websocket');
 const Player = require('./player');
+let player;
+const { Score } = require('./score');
+
 
 //  Express Server - Static Files & Bundles
 
@@ -24,7 +27,14 @@ wss.on('listening', () => {
 });
 
 wss.on('connection', function connection(ws) {
+  player = new Player(ws);
+
   ws.on('message', function incoming(message) {
+    if (message === 'start') {
+      player.start();
+    } else if (message === 'stop') {
+      player.stop();
+    }
   });
-  const player = new Player(ws);
+
 });

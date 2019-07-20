@@ -6,14 +6,15 @@ describe('Score Functions', () => {
   const score = new Score();
   
   beforeAll(() => {
-    score.insertEvent(15, [128, 2, 3]);
-    score.insertEvent(20, [144, 2, 3]);
-    score.insertEvent(16, [128, 5, 15]);
-    score.insertEvent(24, [144, 5, 14]);
-    score.insertEvent(16, [128, 15, 15]);
-    score.insertEvent(22, [144, 15, 12]);
+    score.insertEvent(16, [144, 2, 3]);
+    score.insertEvent(64, [128, 2, 3]);
+    score.insertEvent(64, [144, 5, 15]);
+    score.insertEvent(92, [128, 5, 14]);
+    score.insertEvent(128, [144, 15, 15]);
+    score.insertEvent(178, [128, 15, 12]);
     
-    score.removeEvent(16, [127, 5, 15]);
+    score.removeEvent(16, [144, 2, 3]);
+    score.removeEvent(64, [128, 2, 3]);
   });
 
   test('should insert event trigger nodes', () => {
