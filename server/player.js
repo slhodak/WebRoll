@@ -3,8 +3,11 @@ const { Score, TriggerNode } = require('./score');
 
 const Player = function(clock, scores) {
   this.clock = clock || new Clock(this, 60, [4, 4], 4);
+  if (clock) {
+    this.clock.player = this;
+  }
   this.sockets = [];
-  this.scores = { size: 0 } || scores;
+  this.scores = scores || { size: 0 };
 };
 
 Player.prototype.addSocket = function(socket) {
