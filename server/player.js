@@ -1,10 +1,10 @@
 const Clock = require('./clock');
 const { Score, TriggerNode } = require('./score');
 
-const Player = function(score) {
-  this.clock = new Clock(this, 60, [4, 4], 4);
+const Player = function(clock, scores) {
+  this.clock = clock || new Clock(this, 60, [4, 4], 4);
   this.sockets = [];
-  this.score = score;
+  this.scores = { size: 0 } || scores;
 };
 
 Player.prototype.addSocket = function(socket) {
@@ -13,8 +13,9 @@ Player.prototype.addSocket = function(socket) {
   socket.send(JSON.stringify({ uid: socket.uid }));
 };
 
-Player.prototype.addScore = function(score) {
-  this.scores.push(score);
+Player.prototype.addScore = function(name = this.scores.size, score) {
+  this.scores[name] = score;
+  this.scores.size += 1;
 };
 
 Player.prototype.start = function() {

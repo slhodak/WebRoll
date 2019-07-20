@@ -36,4 +36,5 @@ wss.on('connection', function connection(ws) {
   });
 
   player.addSocket(ws);
+  player.addScore(new Score());
 });
