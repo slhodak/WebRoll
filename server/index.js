@@ -2,10 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const wss = require('./websocket');
-const Player = require('./player');
-let player;
-const { Score } = require('./score');
-
+const player = require('./player')();
 
 //  Express Server - Static Files & Bundles
 
@@ -27,9 +24,10 @@ wss.on('listening', () => {
 });
 
 wss.on('connection', function connection(ws) {
-  player = new Player(ws);
-
   ws.on('message', function incoming(message) {
+    //  one websocket server has all the scores
+    //  multiple websocket clients will request them
+    //  use this message to determine which score is read
     if (message === 'start') {
       player.start();
     } else if (message === 'stop') {
@@ -37,4 +35,5 @@ wss.on('connection', function connection(ws) {
     }
   });
 
+  player.addSocket(ws);
 });

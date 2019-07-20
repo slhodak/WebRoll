@@ -1,10 +1,16 @@
 const Clock = require('./clock');
 const { Score, TriggerNode } = require('./score');
 
-const Player = function(socket, scores = []) {
-  this.socket = socket;
+const Player = function(score) {
   this.clock = new Clock(this, 60, [4, 4], 4);
-  this.scores = scores;
+  this.sockets = [];
+  this.score = score;
+};
+
+Player.prototype.addSocket = function(socket) {
+  socket.uid = this.sockets.length;
+  this.sockets.push(socket);
+  socket.send(JSON.stringify({ uid: socket.uid }));
 };
 
 Player.prototype.addScore = function(score) {
@@ -15,17 +21,15 @@ Player.prototype.start = function() {
   this.clock.start();
 };
 
-Player.prototype.checkQueues = function(time) {
+Player.prototype.checkQueue = function(time) {
   console.log('checking scores...');
-  this.scores.forEach(score => {
-    let current = score.read(time);
-    if (current !== -1) {
-      current.events.forEach(event => {
-        console.log(event);
-        this.socket.send(JSON.stringify({ data: event }));
-      });
-    }
-  });
+  let current = this.score.read(time);
+  if (current !== -1) {
+    current.events.forEach(event => {
+      console.log(event);
+      this.socket.send(JSON.stringify({ event }));
+    });
+  }
 };
 
 Player.prototype.stop = function() {
@@ -33,4 +37,6 @@ Player.prototype.stop = function() {
   this.clock.stop();
 };
 
-module.exports = Player;
+module.exports = () => {
+  return new Player();
+}
