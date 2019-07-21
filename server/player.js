@@ -15,6 +15,7 @@ const Player = function(clock, scores) {
 Player.prototype.addSocket = function(socket) {
   socket.uid = this.sockets.length;
   this.sockets.push(socket);
+  this.router[socket.uid] = [];
   socket.send(JSON.stringify({ uid: socket.uid }));
 };
 
@@ -24,15 +25,15 @@ Player.prototype.addScore = function(name = this.scores.size, score) {
 };
 
 Player.prototype.routeSocketToScore = function(socketId, scoreName) {
-  if (this.router.socketId) {
-    this.router.socketId.push(scoreName);
-  } else {
-    this.router.socketId = [scoreName];
-  }
+  this.router.socketId.push(scoreName);
 };
 
 Player.prototype.start = function() {
   this.clock.start();
+};
+
+Player.prototype.sendNoteEvents = function() {
+
 };
 
 Player.prototype.checkQueues = function(time, queues) {
