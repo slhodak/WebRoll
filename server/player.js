@@ -1,5 +1,6 @@
 const Clock = require('./clock');
 const { Score, TriggerNode } = require('./score');
+const Helpers = require('./helpers');
 
 const Player = function(clock, scores) {
   this.clock = clock || new Clock(this, 60, [4, 4], 4);
@@ -25,14 +26,19 @@ Player.prototype.start = function() {
   this.clock.start();
 };
 
-Player.prototype.checkQueue = function(time) {
+Player.prototype.checkQueues = function(time, queues) {
   console.log('checking scores...');
-  let current = this.score.read(time);
-  if (current !== -1) {
-    current.events.forEach(event => {
-      console.log(event);
-      this.socket.send(JSON.stringify({ event }));
-    });
+  for (let score in this.scores) {
+    if (Helpers.indexOf(queues, score) > -1) {
+      let current = this.scores[score].read(time);
+      if (current !== -1) {
+        current.events.forEach(event => {
+          console.log(event);
+          //  to each socket... need to define the interface better. Routing?
+          this.sockets.send(JSON.stringify({ event }));
+        });
+      }
+    }
   }
 };
 
