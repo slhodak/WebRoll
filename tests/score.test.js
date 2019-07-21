@@ -12,8 +12,8 @@ describe('Score Functions', () => {
     score.insertEvent(128, [144, 15, 15]);
     score.insertEvent(178, [128, 15, 12]);
     
-    score.removeEvent(16, [144, 2, 3]);
-    score.removeEvent(64, [128, 2, 3]);
+    score.removeEvent(128, [144, 15, 15]);
+    score.removeEvent(178, [128, 15, 12]);
   });
 
   test('should insert event trigger nodes', () => {
@@ -41,6 +41,6 @@ describe('Score Functions', () => {
       }
       node = node.next;
     }
-    expect(last.time).toBe(24);
+    expect(last.time).toBe(92);
   });
 });
