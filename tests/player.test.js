@@ -5,6 +5,11 @@ describe('Player', () => {
     expect(player).toHaveProperty('router');
     expect(player.router).toBeInstanceOf(Object);
   });
+
+  test('should have a function to route scores to client synths', () => {
+    expect(player).toHaveProperty('routeSocketToScore');
+    expect(player.routeSocketToScore).toBeInstanceOf(Function);
+  });
   
   test.skip('should query Score event queues on each tick', () => {
 

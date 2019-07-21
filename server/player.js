@@ -23,6 +23,14 @@ Player.prototype.addScore = function(name = this.scores.size, score) {
   this.scores.size += 1;
 };
 
+Player.prototype.routeSocketToScore = function(socketId, scoreName) {
+  if (this.router.socketId) {
+    this.router.socketId.push(scoreName);
+  } else {
+    this.router.socketId = [scoreName];
+  }
+};
+
 Player.prototype.start = function() {
   this.clock.start();
 };
