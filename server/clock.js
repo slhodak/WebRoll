@@ -26,7 +26,7 @@ Clock.prototype.tick = function() {
     this.ticks += 1;
   }
   if (this.player) {
-    this.player.checkQueues(this.ticks);
+    this.player.sendNoteEvents(this.ticks);
   }
 };
 

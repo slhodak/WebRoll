@@ -1,5 +1,4 @@
 const Clock = require('./clock');
-const { Score, TriggerNode } = require('./score');
 const Helpers = require('./helpers');
 
 const Player = function(clock, scores) {
@@ -25,31 +24,27 @@ Player.prototype.addScore = function(name = this.scores.size, score) {
 };
 
 Player.prototype.routeSocketToScore = function(socketId, scoreName) {
-  this.router.socketId.push(scoreName);
+  this.router[socketId].push(scoreName);
 };
 
 Player.prototype.start = function() {
   this.clock.start();
 };
 
-Player.prototype.sendNoteEvents = function() {
-
-};
-
-Player.prototype.checkQueues = function(time, queues) {
-  console.log('checking scores...');
-  for (let score in this.scores) {
-    if (Helpers.indexOf(queues, score) > -1) {
-      let current = this.scores[score].read(time);
+Player.prototype.sendNoteEvents = function(time) {
+  //  access every score for each socket
+  this.sockets.forEach(socket => {
+    //  check each score for due event lists
+    this.router[socket.uid].forEach(scoreName => {
+      let current = this.scores[scoreName].read(time);
       if (current !== -1) {
+        //  send each due event
         current.events.forEach(event => {
-          console.log(event);
-          //  to each socket... need to define the interface better. Routing?
-          this.sockets.send(JSON.stringify({ event }));
+          socket.send(JSON.stringify({ event }));
         });
       }
-    }
-  }
+    });
+  });
 };
 
 Player.prototype.stop = function() {
