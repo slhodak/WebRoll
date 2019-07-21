@@ -7,6 +7,7 @@ const Player = function(clock, scores) {
   if (clock) {
     this.clock.player = this;
   }
+  this.router = {};
   this.sockets = [];
   this.scores = scores || { size: 0 };
 };
