@@ -2,7 +2,22 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const wss = require('./websocket');
+const { Score } = require('./score');
 const player = require('./player')();
+
+
+// let score = new Score();
+// score.insertEvent(16, [144, 2, 3]);
+// score.insertEvent(64, [128, 2, 3]);
+// score.insertEvent(64, [144, 5, 15]);
+// score.insertEvent(92, [128, 5, 14]);
+// score.insertEvent(128, [144, 15, 15]);
+// score.insertEvent(178, [128, 15, 12]);
+
+// score.removeEvent(128, [144, 15, 15]);
+// score.removeEvent(178, [128, 15, 12]);
+
+// player.addScore(score);
 
 //  Express Server - Static Files & Bundles
 
@@ -24,17 +39,18 @@ wss.on('listening', () => {
 });
 
 wss.on('connection', function connection(ws) {
-  ws.on('message', function incoming(message) {
-    //  one websocket server has all the scores
-    //  multiple websocket clients will request them
-    //  use this message to determine which score is read
-    if (message === 'start') {
+  ws.on('message', function incoming(transmission) {
+    let message = JSON.parse(transmission);
+    if (message.message === 'route') {
+      player.routeSocketToScore(message.socket, message.scoreName);
+    } else if (message.message === 'start') {
       player.start();
-    } else if (message === 'stop') {
+    } else if (message.message === 'stop') {
       player.stop();
     }
   });
 
   player.addSocket(ws);
-  player.addScore(new Score());
+  // Default score
+  // player.addScore(new Score());
 });
