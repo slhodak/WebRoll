@@ -1,16 +1,30 @@
 //  Model
 
-const Score = function (tempo = 100) {
-  this.tempo = tempo;
+const Score = function () {
   this.triggers = {
     head: null
   };
+  this.current = this.triggers.head;
 };
+
+Score.prototype.read = function(time) {
+  console.log(time);
+  if (this.current.time === time) {
+    if (this.current.next) {
+      this.current = this.current.next;
+    } else {
+      this.current = this.triggers.head;
+    }
+    return this.current;
+  }
+  return -1;
+}
 
 Score.prototype.insertEvent = function (time, event) {
   let curr = this.triggers.head;
   if (!curr) {
     this.triggers.head = new TriggerNode(time, event);
+    this.current = this.triggers.head;
   } else if (curr.time > time) {
     this.triggers.head = new TriggerNode(time, event);
     this.triggers.head.next = curr;
@@ -68,7 +82,7 @@ const TriggerNode = function (time, event) {
   this.next = null;
 };
 
-export {
+module.exports = {
   Score,
   TriggerNode
 }
