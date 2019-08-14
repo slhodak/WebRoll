@@ -3,6 +3,10 @@ p {
   padding: 0px;
 }
 
+.rollContainer {
+  width: 500px;
+}
+
 .gridContainer {
   height: 200px;
   width: 500px;

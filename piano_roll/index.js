@@ -1,6 +1,10 @@
 import Editor from './editor.js';
 
 const editor = new Editor();
-const container = `<div class="gridContainer">${editor.grid}</div>`;
+const pianoRoll = `
+  <div class="rollContainer">
+    ${editor.header}
+    <div class="gridContainer">${editor.grid}</div>
+  </div>`;
 
-document.getElementsByClassName('pianoRoll')[0].innerHTML = container;
+document.getElementsByClassName('pianoRoll')[0].innerHTML = pianoRoll;

@@ -1,5 +1,6 @@
 //  Editor for sequencer -- View & Controller
 import { noteUtils } from './lib/helpers.js';
+import { ControlView } from './views/views.js';
 
 //  Editor = entire module
 //    - Interface to alter Grid Division and Time Signature
@@ -11,6 +12,7 @@ const Editor = function(length = 16, timeDivision = [1, 8], timeSignature = [4, 
 
   this.divisions = this.numberOfDivisions(length, timeDivision);
   this.grid = this.createGrid(this.divisions);
+  this.header = ControlView.createRollHeader();
   //  Insert into Grid Container
 };
 
