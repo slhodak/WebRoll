@@ -5,6 +5,7 @@ const wss = require('./websocket');
 const { Score } = require('./score');
 const player = require('./player')();
 
+process.title = 'WebRoll';
 
 // let score = new Score();
 // score.insertEvent(16, [144, 2, 3]);
