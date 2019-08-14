@@ -1,3 +1,8 @@
+p {
+  margin: 0px;
+  padding: 0px;
+}
+
 .gridContainer {
   height: 200px;
   width: 500px;
@@ -24,3 +29,51 @@
   background-color: rgb(65, 69, 129);
 }
 
+.rollHeader {
+  display: flex;
+  justify-content: space-around;
+}
+
+.rollControls {
+  display: flex;
+}
+
+.rollButton {
+  height: 30px;
+  width: 60px;
+  border: 1px solid black;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play {
+  background-color: rgb(121, 197, 121);
+}
+
+.pause {
+  background-color: rgb(236, 236, 111);
+}
+
+.stop {
+  background-color: rgb(240, 111, 111);
+}
+
+.rollButton:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.rollButton:active {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.rollClock {
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.time {
+  display: inline;
+}
