@@ -45,18 +45,14 @@ wss.on('listening', () => {
 wss.on('connection', function connection(ws) {
   if (ws.protocol === 'synth') {
     console.log('established connection to synth window');
+    player.addSynthSocket(ws);
+  } else if (ws.protocol === 'roll') {
     ws.on('message', function incoming(transmission) {
       let message = JSON.parse(transmission);
       if (message.message === 'route') {
         player.routeSocketToScore(message.socket, message.scoreName);
-      } else if (message.message === 'start') {
-        player.start();
-      } else if (message.message === 'stop') {
-        player.stop();
       }
     });
-    player.addSocket(ws);
-  } else if (ws.protocol === 'roll') {
     console.log('established connection to roll window');
     player.addRollSocket(ws);
   }
