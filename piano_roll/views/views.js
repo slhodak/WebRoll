@@ -15,6 +15,9 @@ const ControlView = {
         </div>
       </div>
     `;
+  },
+  updateTickClock(tick) {
+    document.getElementsByClassName('time')[0].innerText = tick;
   }
 };
 
