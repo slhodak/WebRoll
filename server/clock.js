@@ -35,10 +35,14 @@ Clock.prototype.tick = function() {
   }
 };
 
-Clock.prototype.stop = function() {
+Clock.prototype.stop = function(reset) {
   if (this.ticking === false) {
     return -1;
   } else {
+    if (reset) {
+      console.log('resetting clock');
+      this.ticks = 0;
+    }
     this.ticking = false;
     return 0;
   }

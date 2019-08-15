@@ -4,7 +4,7 @@ const Controller = {
   addHandlers() {
     Controller.enablePlayButton();
     Controller.enablePauseButton();
-    //  enable stop button
+    Controller.enableStopButton();
     //  enable grid cell Button
   },
   enablePlayButton() {
@@ -16,11 +16,14 @@ const Controller = {
   enablePauseButton() {
     let button = document.getElementsByClassName('pause')[0];
     button.addEventListener('mousedown', (e) => {
-      Player.stop();
+      Player.stop(false);
     });
   },
   enableStopButton() {
-    //  stop and reset clock to 0
+    let button = document.getElementsByClassName('stop')[0];
+    button.addEventListener('mousedown', (e) => {
+      Player.stop(true);
+    });
   },
   enableNoteCell() {
     //  attach to or detach from grid -- this is a sequencer for now

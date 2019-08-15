@@ -38,6 +38,7 @@ Player.prototype.sendNoteEvents = function(time) {
       let current = this.scores[scoreName].read(time);
       if (current !== -1) {
         //  send each due event
+        //  make sure that a note-off event without a corresponding note-on is not disruptive
         current.events.forEach(event => {
           socket.send(JSON.stringify({ event }));
         });
@@ -46,9 +47,10 @@ Player.prototype.sendNoteEvents = function(time) {
   });
 };
 
-Player.prototype.stop = function() {
+Player.prototype.stop = function(reset) {
+  //  be sure to "noteoff" any notes which are on
   console.log('stopping score loop...');
-  return this.clock.stop();
+  return this.clock.stop(reset);
 };
 
 module.exports = () => {

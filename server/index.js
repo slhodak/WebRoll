@@ -38,7 +38,8 @@ app.post('/start', (req, res) => {
 });
 
 app.post('/stop', (req, res) => {
-  if (player.stop()  >= 0) {
+  console.log(req.query);
+  if (player.stop(req.query.reset === 'true' ? true : false)  >= 0) {
     res.status(200).send({ message: 'Stopped player'});
   } else {
     res.status(400).send({ message: 'Could not stop player'});

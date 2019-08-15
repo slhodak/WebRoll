@@ -11,8 +11,8 @@ const Player = {
       })
       .catch(err => console.log(err));
   },
-  stop() {
-    fetch(`${config.host}:${config.port}/stop`, {
+  stop(reset) {
+    fetch(`${config.host}:${config.port}/stop${reset ? '?reset=true' : '?reset=false'}`, {
       method: 'POST'
     })
       .then(response => response.json())
