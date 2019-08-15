@@ -18,6 +18,11 @@ Player.prototype.addSocket = function(socket) {
   socket.send(JSON.stringify({ uid: socket.uid }));
 };
 
+Player.prototype.addRollSocket = function(socket) {
+  this.rollSocket = socket;
+  socket.send(JSON.stringify({ message: "Gotcha socket" }));
+}
+
 Player.prototype.addScore = function(name = this.scores.size, score) {
   this.scores[name] = score;
   this.scores.size += 1;
