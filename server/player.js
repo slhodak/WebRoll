@@ -1,4 +1,5 @@
 const Clock = require('./clock');
+const Score = require('./score');
 
 const Player = function(clock, scores) {
   this.clock = clock || new Clock(this, 60, [4, 4], 4);

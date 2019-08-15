@@ -2,23 +2,9 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const wss = require('./websocket');
-const { Score } = require('./score');
 const player = require('./player')();
 
 process.title = 'WebRoll';
-
-// let score = new Score();
-// score.insertEvent(16, [144, 2, 3]);
-// score.insertEvent(64, [128, 2, 3]);
-// score.insertEvent(64, [144, 5, 15]);
-// score.insertEvent(92, [128, 5, 14]);
-// score.insertEvent(128, [144, 15, 15]);
-// score.insertEvent(178, [128, 15, 12]);
-
-// score.removeEvent(128, [144, 15, 15]);
-// score.removeEvent(178, [128, 15, 12]);
-
-// player.addScore(score);
 
 //  Express Server - Static Files & Bundles
 
@@ -69,6 +55,4 @@ wss.on('connection', function connection(ws) {
   });
 
   player.addSocket(ws);
-  // Default score
-  // player.addScore(new Score());
 });

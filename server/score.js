@@ -82,7 +82,4 @@ const TriggerNode = function (time, event) {
   this.next = null;
 };
 
-module.exports = {
-  Score,
-  TriggerNode
-}
+module.exports = Score;
