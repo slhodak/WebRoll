@@ -48,7 +48,7 @@ Player.prototype.sendNoteEvents = function(time) {
 
 Player.prototype.stop = function() {
   console.log('stopping score loop...');
-  this.clock.stop();
+  return this.clock.stop();
 };
 
 module.exports = () => {

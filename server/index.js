@@ -37,6 +37,14 @@ app.post('/start', (req, res) => {
   }
 });
 
+app.post('/stop', (req, res) => {
+  if (player.stop()  >= 0) {
+    res.status(200).send({ message: 'Stopped player'});
+  } else {
+    res.status(400).send({ message: 'Could not stop player'});
+  }
+});
+
 app.listen(Network.httpPort, () => {
   console.log(`Piano roll service available on port ${Network.httpPort}`);
 });

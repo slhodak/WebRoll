@@ -36,7 +36,12 @@ Clock.prototype.tick = function() {
 };
 
 Clock.prototype.stop = function() {
-  this.ticking = false;
+  if (this.ticking === false) {
+    return -1;
+  } else {
+    this.ticking = false;
+    return 0;
+  }
 };
 
 module.exports = Clock;
