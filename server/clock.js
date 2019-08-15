@@ -29,6 +29,7 @@ Clock.prototype.tick = function() {
       }
       if (this.player) {
         this.player.sendNoteEvents(this.ticks);
+        this.player.rollSocket.send(JSON.stringify({ tick: this.ticks }));
       }
       this.tick();
     }

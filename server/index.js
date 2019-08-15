@@ -56,5 +56,4 @@ wss.on('connection', function connection(ws) {
     console.log('established connection to roll window');
     player.addRollSocket(ws);
   }
-
 });

@@ -7,13 +7,14 @@ const Player = function(clock, scores) {
     this.clock.player = this;
   }
   this.router = {};
-  this.sockets = [];
+  this.synthSockets = []
+  this.rollSocket;
   this.scores = scores || { size: 0 };
 };
 
 Player.prototype.addSynthSocket = function(socket) {
-  socket.uid = this.sockets.length;
-  this.sockets.push(socket);
+  socket.uid = this.synthSockets.length;
+  this.synthSockets.push(socket);
   this.router[socket.uid] = [];
   socket.send(JSON.stringify({ uid: socket.uid }));
 };
@@ -38,7 +39,7 @@ Player.prototype.start = function() {
 
 Player.prototype.sendNoteEvents = function(time) {
   //  access every score for each socket
-  this.sockets.forEach(socket => {
+  this.synthSockets.forEach(socket => {
     //  check each score for due event lists
     this.router[socket.uid].forEach(scoreName => {
       let current = this.scores[scoreName].read(time);
