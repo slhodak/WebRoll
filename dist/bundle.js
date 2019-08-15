@@ -2,6 +2,7 @@ const host = 'http://localhost:4000';
 
 const scripts = [
   '/piano_roll/lib/helpers.js',
+  '/piano_roll/rollSocket.js',
   '/piano_roll/views/views.js',
   '/piano_roll/model.js',
   '/piano_roll/controller/controllers.js',
