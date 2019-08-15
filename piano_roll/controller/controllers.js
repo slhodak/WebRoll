@@ -3,20 +3,21 @@ import { Player } from '../model.js';
 const Controller = {
   addHandlers() {
     Controller.enablePlayButton();
-    //  enable play button
-    //  enable pause button
+    Controller.enablePauseButton();
     //  enable stop button
     //  enable grid cell Button
   },
   enablePlayButton() {
-    //  begin roll clock
     let button = document.getElementsByClassName('play')[0];
     button.addEventListener('mousedown', (e) => {
       Player.start();
     });
   },
   enablePauseButton() {
-    //  pause roll clock
+    let button = document.getElementsByClassName('pause')[0];
+    button.addEventListener('mousedown', (e) => {
+      Player.stop();
+    });
   },
   enableStopButton() {
     //  stop and reset clock to 0
