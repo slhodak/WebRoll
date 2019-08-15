@@ -8,6 +8,7 @@ const ControlView = {
           <button class="play rollButton">Play</button>
           <button class="pause rollButton">Pause</button>
           <button class="stop rollButton">Stop</button>
+          <button class="createScore rollButton">New Part</button>
         </div>
         <div class="rollClock">
           <p style="display: inline">Clock:</p>
@@ -18,6 +19,15 @@ const ControlView = {
   },
   updateTickClock(tick) {
     document.getElementsByClassName('time')[0].innerText = tick;
+  }
+};
+
+const ScoreRouterView = {
+  renderScoreRouter(router) {
+    //  blank version uses default (empty) score and placeholder text for synth?
+    //  blank version displays "create scores and synths to route"?
+    //  use score routes model from server to rerender view
+    //  how to create a score?
   }
 };
 

@@ -18,7 +18,7 @@ Score.prototype.read = function(time) {
     return this.current;
   }
   return -1;
-}
+};
 
 Score.prototype.insertEvent = function (time, event) {
   let curr = this.triggers.head;
