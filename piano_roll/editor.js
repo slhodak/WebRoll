@@ -1,6 +1,5 @@
 //  Editor for sequencer -- View & Controller
-import { noteUtils } from './lib/helpers.js';
-import { ControlView } from './views/views.js';
+import { ControlView, GridView } from './views/views.js';
 
 //  Editor = entire module
 //    - Interface to alter Grid Division and Time Signature
@@ -11,29 +10,12 @@ const Editor = function(length = 16, timeDivision = [1, 8], timeSignature = [4, 
   this.timeSignature = timeSignature;
 
   this.divisions = this.numberOfDivisions(length, timeDivision);
-  this.grid = this.createGrid(this.divisions);
+  this.grid = GridView.createGrid(this.divisions);
   this.header = ControlView.createRollHeader();
-  //  Insert into Grid Container
 };
 
 Editor.prototype.numberOfDivisions = function(length, timeDivision) {
   return (timeDivision[1] * length) / timeDivision[0];
-};
-
-Editor.prototype.createGrid = function(divisions) {
-  //  Create Grid
-  //    Grid populates based on model data
-  //    Grid edits alter model
-  let columns = '';
-  for (let i = 0; i < divisions; i++) {
-    let column = `<div class="timeColumn" data-column-time=${i}>`;
-    for (let j = 87; j > -1; j--) {
-      column += `<div class="noteCell ${noteUtils.getNoteByNumber(j)[0]}" data-note=${j}></div>`;
-    }
-    column += '</div>';
-    columns += column;
-  }
-  return `<div class="editorGrid">${columns}</div>`;
 };
 
 export default Editor;
