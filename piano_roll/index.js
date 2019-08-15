@@ -1,4 +1,5 @@
 import Editor from './editor.js';
+import { Controller } from './controller/controllers.js';
 
 const editor = new Editor();
 const pianoRoll = `
@@ -8,3 +9,5 @@ const pianoRoll = `
   </div>`;
 
 document.getElementsByClassName('pianoRoll')[0].innerHTML = pianoRoll;
+
+Controller.addHandlers();

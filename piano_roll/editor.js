@@ -1,5 +1,6 @@
 //  Editor for sequencer -- View & Controller
 import { ControlView, GridView } from './views/views.js';
+import { Controller } from './controller/controllers.js';
 
 //  Editor = entire module
 //    - Interface to alter Grid Division and Time Signature

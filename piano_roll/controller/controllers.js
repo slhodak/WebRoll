@@ -1,27 +1,29 @@
+import { Player } from '../model.js';
+
 const Controller = {
   addHandlers() {
+    Controller.enablePlayButton();
     //  enable play button
     //  enable pause button
     //  enable stop button
-    //  enable grid cell click
+    //  enable grid cell Button
   },
-  handleNoteClick() {
-    //  attach to added notes
-    //  use cell attrs to delete note from model
-    //  rerender grid from new model
-  },
-  handlePlayClick() {
+  enablePlayButton() {
     //  begin roll clock
+    let button = document.getElementsByClassName('play')[0];
+    button.addEventListener('mousedown', (e) => {
+      Player.start();
+    });
   },
-  handlePauseClick() {
+  enablePauseButton() {
     //  pause roll clock
   },
-  handleStopClick() {
+  enableStopButton() {
     //  stop and reset clock to 0
   },
-  handleCellClick() {
-    //  attach to grid -- this is a sequencer for now
-    //  use cell attrs to insert note into model
+  enableNoteCell() {
+    //  attach to or detach from grid -- this is a sequencer for now
+    //  use cell attrs to insert or delete note into/from model
     //  rerender grid from new model
   }
 };

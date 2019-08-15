@@ -5,9 +5,9 @@ const ControlView = {
     return `
       <div class="rollHeader"> 
         <div class="rollControls">
-          <div class="play rollButton"><p>Play</p></div>
-          <div class="pause rollButton"><p>Pause</p></div>
-          <div class="stop rollButton"><p>Stop</p></div>
+          <button class="play rollButton">Play</button>
+          <button class="pause rollButton">Pause</button>
+          <button class="stop rollButton">Stop</button>
         </div>
         <div class="rollClock">
           <p style="display: inline">Clock:</p>
