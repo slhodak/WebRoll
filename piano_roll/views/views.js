@@ -13,10 +13,14 @@ const ControlView = {
         </div>
       </div>
     `;
-  },
-  addListeners() {
-
   }
-}
+};
+
+const GridView = {
+  renderGrid() {
+    //  migrate this from Editor method
+    //  use any notes in model to attach classes to cells with notes in them (different color)
+  }
+};
 
 export { ControlView };
