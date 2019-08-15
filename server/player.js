@@ -11,7 +11,7 @@ const Player = function(clock, scores) {
   this.scores = scores || { size: 0 };
 };
 
-Player.prototype.addSocket = function(socket) {
+Player.prototype.addSynthSocket = function(socket) {
   socket.uid = this.sockets.length;
   this.sockets.push(socket);
   this.router[socket.uid] = [];
@@ -20,7 +20,7 @@ Player.prototype.addSocket = function(socket) {
 
 Player.prototype.addRollSocket = function(socket) {
   this.rollSocket = socket;
-  socket.send(JSON.stringify({ message: "Gotcha socket" }));
+  socket.send(JSON.stringify({ message: "Connected to Roll Server Socket" }));
 }
 
 Player.prototype.addScore = function(name = this.scores.size, score) {
