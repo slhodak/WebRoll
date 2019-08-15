@@ -34,7 +34,6 @@ Clock.prototype.tick = function() {
       this.tick();
     }
   }, this.interval);
-  console.log(`Handling tick: ${this.ticks}`);
 };
 
 Clock.prototype.stop = function(reset) {

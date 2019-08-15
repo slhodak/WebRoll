@@ -1,6 +1,6 @@
 //  Model
 
-const Score = function () {
+const Score = function() {
   this.triggers = {
     head: null
   };

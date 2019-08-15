@@ -1,5 +1,6 @@
 const Clock = require('./clock');
 const Score = require('./score');
+const sampleScore = require('../data/sampleScore');
 
 const Player = function(clock, scores) {
   this.clock = clock || new Clock(this, 60, [4, 4], 4);
@@ -9,7 +10,10 @@ const Player = function(clock, scores) {
   this.router = {};
   this.synthSockets = []
   this.rollSocket;
-  this.scores = scores || { size: 0 };
+  this.scores = {
+    'sample': sampleScore,
+    size: 1
+  } || scores || { size: 0 };
 };
 
 Player.prototype.addSynthSocket = function(socket) {
