@@ -14,25 +14,26 @@ Clock.prototype.start = function() {
     return -1;
   } else {
     this.ticking = true;
-    setTimeout( () => {
-      if (this.ticking) {
-        this.tick();
-        this.start();
-      }
-    }, this.interval);
+    this.tick();
     return 0;
   }
 };
 
 Clock.prototype.tick = function() {
-  if (this.ticks === this.tickLimit - 1) {
-    this.ticks = 0;
-  } else {
-    this.ticks += 1;
-  }
-  if (this.player) {
-    this.player.sendNoteEvents(this.ticks);
-  }
+  setTimeout(() => {
+    if (this.ticking) {
+      if (this.ticks === this.tickLimit - 1) {
+        this.ticks = 0;
+      } else {
+        this.ticks += 1;
+      }
+      if (this.player) {
+        this.player.sendNoteEvents(this.ticks);
+      }
+      this.tick();
+    }
+  }, this.interval);
+  console.log(`Handling tick: ${this.ticks}`);
 };
 
 Clock.prototype.stop = function(reset) {
