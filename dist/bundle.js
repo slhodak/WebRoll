@@ -2,8 +2,9 @@ const host = 'http://localhost:4000';
 
 const scripts = [
   '/piano_roll/lib/helpers.js',
-  '/piano_roll/index.js',
+  '/piano_roll/views/views.js',
   '/piano_roll/editor.js',
+  '/piano_roll/index.js',
 ];
 
 let reference = document.getElementsByClassName('scripts')[0];

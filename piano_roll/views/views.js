@@ -1,4 +1,4 @@
-import { noteUtils } from './lib/helpers.js';
+import { noteUtils } from '../lib/helpers.js';
 
 const ControlView = {
   createRollHeader() {
@@ -19,7 +19,7 @@ const ControlView = {
 };
 
 const GridView = {
-  createGrid() {
+  createGrid(divisions) {
     let columns = '';
     for (let i = 0; i < divisions; i++) {
       let column = `<div class="timeColumn" data-column-time=${i}>`;
