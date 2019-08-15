@@ -10,13 +10,18 @@ const Clock = function(player, tempo = 120, timeSignature = [4, 4], length = 64)
 };
 
 Clock.prototype.start = function() {
-  this.ticking = true;
-  setTimeout( () => {
-    if (this.ticking) {
-      this.tick();
-      this.start();
-    }
-  }, this.interval);
+  if (this.ticking === true) {
+    return -1;
+  } else {
+    this.ticking = true;
+    setTimeout( () => {
+      if (this.ticking) {
+        this.tick();
+        this.start();
+      }
+    }, this.interval);
+    return 0;
+  }
 };
 
 Clock.prototype.tick = function() {

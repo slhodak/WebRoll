@@ -30,8 +30,12 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 app.use('/piano_roll', express.static(path.resolve(__dirname, '../piano_roll')));
 
 app.post('/start', (req, res) => {
-  res.status(200).send({ message: 'Started player'});
-})
+  if (player.start()  >= 0) {
+    res.status(200).send({ message: 'Started player'});
+  } else {
+    res.status(400).send({ message: 'Could not start player'});
+  }
+});
 
 app.listen(Network.httpPort, () => {
   console.log(`Piano roll service available on port ${Network.httpPort}`);

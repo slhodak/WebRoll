@@ -27,7 +27,7 @@ Player.prototype.routeSocketToScore = function(socketId, scoreName) {
 };
 
 Player.prototype.start = function() {
-  this.clock.start();
+  return this.clock.start();
 };
 
 Player.prototype.sendNoteEvents = function(time) {
